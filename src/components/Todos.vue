@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <div v-bind:key="todo.id" v-for="todo in todos">
       <TodoItem v-bind:todo="todo" />
     </div>
@@ -16,3 +16,9 @@ export default {
   props: ["todos"]
 };
 </script>
+
+<style scoped>
+.container {
+  margin: 0 100px 0 100px;
+}
+</style>
