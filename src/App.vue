@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png" />
-    <Todos v-bind:todos="todos" />
+    <Todos v-bind:todos="todos" v-on:del-item="deleteTodo" />
   </div>
 </template>
 
@@ -32,6 +32,11 @@ export default {
         }
       ]
     };
+  },
+  methods: {
+    deleteTodo(todo) {
+      this.todos = this.todos.filter(todoL => todoL.id !== todo.id);
+    }
   }
 };
 </script>

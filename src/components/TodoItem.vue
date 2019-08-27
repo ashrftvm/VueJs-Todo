@@ -1,9 +1,9 @@
 <template>
   <div class="todo-container">
     <div class="todo-item">
-      <input type="checkbox" />
+      <input type="checkbox" v-on:change="updateStatus" v-bind="{'checked':todo.completed}" />
       <p v-bind:class="{'is-complete':todo.completed}">{{todo.title}}</p>
-      <button class="del">❌</button>
+      <button v-on:click="$emit('del-item',todo)" class="del">❌</button>
     </div>
   </div>
 </template>
@@ -11,7 +11,12 @@
 <script>
 export default {
   name: "TodoItem",
-  props: ["todo"]
+  props: ["todo"],
+  methods: {
+    updateStatus() {
+      this.todo.completed = !this.todo.completed;
+    }
+  }
 };
 </script>
 
