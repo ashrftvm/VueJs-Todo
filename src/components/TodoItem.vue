@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>{{todo.title}}</p>
+    <p v-bind:class="{'is-complete':todo.completed}">{{todo.title}}</p>
   </div>
 </template>
 
@@ -10,3 +10,9 @@ export default {
   props: ["todo"]
 };
 </script>
+
+<style scoped>
+.is-complete {
+  text-decoration: line-through;
+}
+</style>
