@@ -1,15 +1,35 @@
 <template>
   <div class="container">
-    <form>
-      <input type="text" name="title" placeholder="Enter Todo Title" />
+    <form @submit="addTodo">
+      <input type="text" v-model="title" name="title" placeholder="Enter Todo Title" />
       <input type="submit" value="Submit" />
     </form>
   </div>
 </template>
 
 <script>
+import uuid from "uuid";
+
 export default {
-  name: "AddTodo"
+  name: "AddTodo",
+  data() {
+    return {
+      title: ""
+    };
+  },
+  methods: {
+    addTodo(e) {
+      e.preventDefault();
+      const newTodo = {
+        id: uuid.v4(),
+        title: this.title,
+        completed: false
+      };
+      //send to parent for storing
+      this.$emit("add-todo", newTodo);
+      this.title = "";
+    }
+  }
 };
 </script>
 
@@ -23,27 +43,5 @@ form {
   justify-content: space-evenly;
   align-items: center;
   border-radius: 20px 0 20px 0;
-}
-
-form input[type="text"] {
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-  width: 80%;
-}
-
-form input[type="submit"] {
-  padding: 12px 20px;
-  background: #555;
-  color: #fff;
-  margin: 8px 0;
-  display: inline-block;
-  cursor: pointer;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
 }
 </style>
