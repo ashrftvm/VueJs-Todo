@@ -1,17 +1,37 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Hello World 👋🏽" />
+    <Todos v-bind:todos="todos" />
   </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
-
+import Todos from "./components/Todos";
 export default {
   name: "app",
   components: {
-    HelloWorld
+    Todos
+  },
+  data() {
+    return {
+      todos: [
+        {
+          title: "Todo 1",
+          completed: false,
+          id: 0
+        },
+        {
+          title: "Todo 2",
+          completed: true,
+          id: 1
+        },
+        {
+          title: "Todo Next",
+          completed: false,
+          id: 2
+        }
+      ]
+    };
   }
 };
 </script>
